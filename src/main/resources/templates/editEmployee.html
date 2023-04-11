@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header></header>
+<div class="blog">
+    <div class="container">
+        <p>Параметров сотрудников</p>
+        <table>
+            <thead>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата рождения</th>
+            <th>Телефон</th>
+            <th>Код департамента</th>
+            <th>ЗП</th>
+            </thead>
+            <tbody>
+            <tr th:each="employee: ${employee}">
+                <form th:action="'/admin/' + ${employee.getId}" method="post">
+                    <table style="{width: 100%}">
+                        <tr>
+                            <td th:text=${employee.getId}></td>
+                            <td><input th:value="${employee.getFirstName}" type="text" id="firstName" name="firstName"></td>
+                            <td><input th:value="${employee.getLastName}" type="text" id="lastName" name="lastName"></td>
+                            <td><input th:value="${employee.getDateOfBirth}" type="text" id="dateOfBirth" name="dateOfBirth"></td>
+                            <td><input th:value="${employee.getPhoneNumber}" type="text" id="phoneNumber" name="phoneNumber"></td>
+                            <td><input th:value="${employee.getCodeOfDepartment}" type="text" id="codeOfDepartment" name="codeOfDepartment"></td>
+                            <td><input th:value="${employee.getWage}" type="text" id="wage" name="wage"></td>
+                            <td>
+                            <td th:value="${employee.getStatus}" name="status"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <div class="tableFooter">
+                                    <a th:href="@{/admin/delete/{id}(id=${employee.getId})}">
+                                        <button class="btn1" type="button">Удалить</button>
+                                    </a>
+                                    <a th:href="'/admin/' + ${employee.getId}">
+                                        <button class="btn1" type="submit">Подтвердить изменения
+                                        </button></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header>
+</header>
+<div class="blog">
+    <p>Список сотрудников</p>
+    <form th:action="@{/admin}" method="GET"><br>
+        <table>
+            <thead>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата рождения</th>
+            <th>Телефон</th>
+            <th>Код департамента</th>
+            <th>ЗП</th>
+            <th>Статус</th>
+            <th>Редактирование</th>
+            </thead>
+            <tr th:each="employee: ${list}">
+                <td th:text="${employee.getId}"></td>
+                <td th:text="${employee.getFirstName}"></td>
+                <td th:text="${employee.getLastName}"></td>
+                <td th:text="${employee.getDateOfBirth}"></td>
+                <td th:text="${employee.getPhoneNumber}"></td>
+                <td th:text="${employee.getCodeOfDepartment}"></td>
+                <td th:text="${employee.getWage}"></td>
+                <td th:text="${employee.getStatus}"></td>
+                <td><a th:href="@{/admin/{id}(id=${employee.getId})}"
+                       class="btn3">Редактировать</a></td>
+            </tr>
+        </table>
+    </form>
+    <form th:action="@{/admin/new}" method="get">
+        <button class="btn1 button" type="submit" method="get" >Добавить сотрудника</button>
+    </form>
+</div>
+</body>
+
+</html>
